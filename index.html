@@ -673,7 +673,7 @@ input[type="text"],input[type="url"],textarea,select{min-height:3.3rem;font-size
         <div class="fold-body">
           <p style="margin-top:0">No account. No name. No email — ever. <b>Your save travels inside a code — and you never have to type the long one.</b> Move your game to another device the easy way first: copy it with one tap, or scan it. Typing is only the backup.</p>
           <span class="fieldlabel" style="margin-top:8px">Easiest — scan your save</span>
-          <p class="small" style="margin:4px 0 0" id="qrIntro">Point another device's camera at this QR code — <b>it holds your save code</b>, so scanning gives you the code with zero typing. Open the game on that device, paste the code into the load box below, and you continue exactly where you left off. The QR changes as your game grows, so <b>always use the newest one</b>. <b>Teacher tip:</b> set “Your game address” in the teachers' fold below and this QR becomes a link — scan it and the game opens with the save already loaded, no pasting at all.</p>
+          <p class="small" style="margin:4px 0 0" id="qrIntro">Point another device's camera at this QR code — <b>it is a link to this game with your save inside</b>. Scanning opens the game at <b class="mono">dluvbell.github.io/highschoolFL</b> and continues your progress instantly: no pasting, no typing. The QR changes as your game grows, so <b>always use the newest one</b>.</p>
           <div style="margin-top:12px;display:flex;gap:14px;align-items:center;flex-wrap:wrap">
             <div id="qrCode" style="background:#fff;padding:10px;border-radius:12px;line-height:0;flex:none" aria-label="QR code holding your save code"></div>
             <p class="small" id="qrNote" style="margin:0;flex:1;min-width:180px">No camera handy? The <b>Copy my save code</b> button under the code does the same job in one tap — send the code to the other device however you like (message, email, note) and paste it in there.</p>
@@ -719,18 +719,14 @@ input[type="text"],input[type="url"],textarea,select{min-height:3.3rem;font-size
 
           <details class="fold fold-nested">
             <summary>
-              <span class="fold-title">Teachers — your game address</span>
-              <span class="fold-sub">Set once so the QR becomes a scan-and-continue link.</span>
+              <span class="fold-title">Teachers — your game address (locked)</span>
+              <span class="fold-sub">Built into this file — QR is always a scan-and-continue link.</span>
             </summary>
             <div class="fold-body">
-              <label class="fieldlabel" for="gameUrlInput" style="margin-top:0">Your game address — makes the QR a scan-and-continue link (set once)</label>
-              <p class="small" style="margin:4px 0 0">Teachers: paste the address where this game lives — for example <b class="mono">https://yourname.github.io/my-money-game/</b> — and save it. From then on, every QR above holds <b>that address + your save</b>: a student scans it and the game opens already loaded — no pasting, no typing. Leave it empty and the QR keeps holding just the save code, like now. The address is stored only in <b>this browser</b>, so set it on the device you show QR codes from.</p>
-              <input type="url" id="gameUrlInput" placeholder="https://yourname.github.io/my-money-game/" autocomplete="off" spellcheck="false" style="margin-top:8px" />
-              <div class="coderow">
-                <button class="btn primary" id="saveGameUrlBtn">Save game address</button>
-                <button class="btn" id="clearGameUrlBtn">Clear address</button>
-              </div>
-              <p class="small" id="gameUrlStatus" style="margin-bottom:0">No game address set — QR holds your save code only.</p>
+              <label class="fieldlabel" for="gameUrlInput" style="margin-top:0">Your game address — baked into this file, locked</label>
+              <p class="small" style="margin:4px 0 0">This game's address is written directly into the <code>index.html</code> file itself, so it works for <b>every student on every device</b> with no setup at all. Every QR above holds <b>this address + the student's save</b>: scan it and the game opens already loaded — no pasting, no typing. The address <b>cannot be changed or cleared from the browser</b> — the field below is read-only on purpose. To use a different address, edit <code>GAME_URL</code> at the top of the script in <code>index.html</code> and re-upload the file.</p>
+              <input type="url" id="gameUrlInput" value="https://dluvbell.github.io/highschoolFL/" readonly aria-readonly="true" autocomplete="off" spellcheck="false" style="margin-top:8px;opacity:.85" />
+              <p class="small" id="gameUrlStatus" style="margin-bottom:0">Game address locked in this file: <b class="mono">https://dluvbell.github.io/highschoolFL/</b> — QR is a <b>scan-and-continue link</b>. It cannot be changed from the browser.</p>
             </div>
           </details>
         </div>
@@ -854,7 +850,7 @@ input[type="text"],input[type="url"],textarea,select{min-height:3.3rem;font-size
           <li>Create a GitHub repository and add this file as <code>index.html</code>.</li>
           <li>In the repo, open <b>Settings → Pages</b>, choose “Deploy from a branch”, pick your main branch and the root folder, and save.</li>
           <li>GitHub gives you a public link (like <code>yourname.github.io/repo</code>). Send that link to students — it just works.</li>
-          <li>Each student's progress saves only in their own browser (<code>localStorage</code>) — no names, no emails, no Google accounts, nothing uploaded anywhere. To move to another device, students tap <b>Copy my save code</b> (the game state rides inside the code) or scan their <b>QR code</b>; nobody should ever have to retype the long code. For scan-and-continue QR links, paste your published Pages address once into <b>“Your game address”</b> in the save box on the Today screen (stored in that browser only) — every QR then holds address + save, and scanning opens the game already loaded.</li>
+          <li>Each student's progress saves only in their own browser (<code>localStorage</code>) — no names, no emails, no Google accounts, nothing uploaded anywhere. To move to another device, students tap <b>Copy my save code</b> (the game state rides inside the code) or scan their <b>QR code</b>; nobody should ever have to retype the long code. Scan-and-continue is built in: this file's published address — <code>https://dluvbell.github.io/highschoolFL/</code> — is hardcoded as <code>GAME_URL</code> in the script and locked, so every QR holds that address + the save, and scanning opens the game already loaded on any device. It cannot be changed from the browser; to move the game, edit <code>GAME_URL</code> in <code>index.html</code> and re-upload.</li>
           <li>Students may also replace their random short code with their own pick — even <code>1234</code>, a class number, or a 4-word code. A short code loads a save in that browser only, so if you assign codes, keep them unique per student: two students with the same code on one shared device share one save.</li>
         </ul>
       </details>
@@ -1864,23 +1860,25 @@ function drawQr(el, text){
     return true;
   }catch(e){ return false; }
 }
-/* ---- Game address (teacher setup, stored in THIS browser only) ----
-   The page is a bare file, so it cannot know the address it will be
-   served from. The teacher pastes that address once; it is kept in
-   localStorage under its own key (it is a device setting, NOT part of
-   a student's progress code). With an address set, the QR holds
-   address + "#save=" + code, and the link loader at the bottom of this
-   file picks the save up on arrival — scan and continue, no pasting.
-   With no address, the QR holds the save code alone, exactly as before. */
-var GAME_URL_KEY = KEY + "-game-url";
+/* ---- Game address — HARDCODED and LOCKED ----
+   The teacher's published address is written directly into this file
+   (below) so every student, on every device, gets a scan-and-continue
+   QR with zero setup. It is NOT read from localStorage and there is
+   no UI to change it: getGameUrl() always returns this constant and
+   setGameUrl() is a deliberate no-op. To use a different address,
+   edit GAME_URL here in index.html and re-upload the file. Any older
+   per-browser address saved by a previous version is removed on load
+   so it can never override the locked one. The QR holds
+   address + "#save=" + code, and the link loader at the bottom of
+   this file picks the save up on arrival — scan and continue. */
+var GAME_URL = "https://dluvbell.github.io/highschoolFL/";
+try{ localStorage.removeItem(KEY + "-game-url"); }catch(e){}
 function getGameUrl(){
-  try{ return (localStorage.getItem(GAME_URL_KEY) || "").trim(); }catch(e){ return ""; }
+  return GAME_URL;
 }
 function setGameUrl(u){
-  try{
-    if(u) localStorage.setItem(GAME_URL_KEY, u);
-    else localStorage.removeItem(GAME_URL_KEY);
-  }catch(e){}
+  /* Locked: the game address is baked into this file and cannot be
+     changed from the browser. Intentionally does nothing. */
 }
 function qrPayload(){
   var code = encodeProgress();
@@ -1898,14 +1896,14 @@ function renderSavePanel(){
   if(urlInput && document.activeElement !== urlInput) urlInput.value = url;
   var urlStatus = document.getElementById("gameUrlStatus");
   if(urlStatus) urlStatus.innerHTML = linkMode
-    ? "Game address set: <b class='mono'>" + escapeHtml(url) + "</b> — QR is now a <b>scan-and-continue link</b>."
+    ? "Game address locked in this file: <b class='mono'>" + escapeHtml(url) + "</b> — QR is a <b>scan-and-continue link</b>. It cannot be changed from the browser."
     : "No game address set — QR holds your save code only.";
   var linkBtn = document.getElementById("copyLinkBtn");
   if(linkBtn) linkBtn.hidden = !linkMode;
   var qrIntro = document.getElementById("qrIntro");
   if(qrIntro) qrIntro.innerHTML = linkMode
     ? "Point another device's camera at this QR code — <b>it is a link to this game with your save inside</b>. Scanning opens the game and continues your progress instantly: no pasting, no typing. The QR changes as your game grows, so <b>always use the newest one</b>."
-    : "Point another device's camera at this QR code — <b>it holds your save code</b>, so scanning gives you the code with zero typing. Open the game on that device, paste the code into the load box below, and you continue exactly where you left off. The QR changes as your game grows, so <b>always use the newest one</b>. <b>Teacher tip:</b> set “Your game address” below and this QR becomes a link — scan it and the game opens with the save already loaded, no pasting at all.";
+    : "Point another device's camera at this QR code — <b>it is a link to this game with your save inside</b>. Scanning opens the game and continues your progress instantly: no pasting, no typing. The QR changes as your game grows, so <b>always use the newest one</b>.";
   var qrEl = document.getElementById("qrCode"), qrNote = document.getElementById("qrNote");
   if(qrEl){
     qrEl.innerHTML = "";
@@ -1938,25 +1936,21 @@ var copyLinkBtnEl = document.getElementById("copyLinkBtn");
 if(copyLinkBtnEl) copyLinkBtnEl.addEventListener("click", function(){
   copyText(qrPayload(), "Continue link copied. Open it on any device and your game loads itself.");
 });
+/* The game address is hardcoded (see GAME_URL above) and locked:
+   there are no save/clear buttons and the address field is read-only,
+   so nothing here can change it. This block stays as a safe no-op in
+   case an older cached page still has those controls. */
 var saveGameUrlBtnEl = document.getElementById("saveGameUrlBtn");
 if(saveGameUrlBtnEl) saveGameUrlBtnEl.addEventListener("click", function(){
-  var raw = document.getElementById("gameUrlInput").value.trim();
-  if(!raw){ toast("Paste your game address first — e.g. https://yourname.github.io/my-money-game/"); return; }
-  if(!/^https?:\/\/[^\s#]+$/i.test(raw.split("#")[0])){ toast("That does not look like a web address — it should start with https://"); return; }
-  setGameUrl(raw.split("#")[0]);
-  renderSavePanel();
-  toast("Game address saved. Your QR is now a scan-and-continue link.", 3600);
+  toast("The game address is locked into this file and can't be changed here.", 3200);
 });
 var clearGameUrlBtnEl = document.getElementById("clearGameUrlBtn");
 if(clearGameUrlBtnEl) clearGameUrlBtnEl.addEventListener("click", function(){
-  setGameUrl("");
-  var inp = document.getElementById("gameUrlInput"); if(inp) inp.value = "";
-  renderSavePanel();
-  toast("Game address cleared. Your QR holds the save code only again.", 3200);
+  toast("The game address is locked into this file and can't be cleared.", 3200);
 });
 var gameUrlInputEl = document.getElementById("gameUrlInput");
 if(gameUrlInputEl) gameUrlInputEl.addEventListener("keydown", function(e){
-  if(e.key === "Enter"){ e.preventDefault(); saveGameUrlBtnEl.click(); }
+  if(e.key === "Enter"){ e.preventDefault(); }
 });
 document.getElementById("loadCodeBtn").addEventListener("click", function(){
   loadFromCode(document.getElementById("loadCodeInput").value);
@@ -2318,7 +2312,7 @@ function renderTutSaveLab(body){
     '<p class="tut-sub">It auto-saves in this browser. To move devices, you have two machines downstairs on the <b>Today</b> screen — <b>try both now</b>:</p>' +
     '<div class="tut-lab">' +
     '<button class="tut-labbtn" id="tutLabCopy" type="button"><span class="lic">1</span><span>Copy my save code<small>One tap. Paste it on the other device. Never type the long code.</small></span></button>' +
-    '<button class="tut-labbtn" id="tutLabQr" type="button"><span class="lic">2</span><span>Scan the QR code<small>' + (linkMode ? 'Your game address is set — the QR is a LINK: scan it and the game opens with your save already loaded. Zero pasting.' : 'Right now the QR holds your code: scan it, paste the code in on the other device. (Once your teacher sets the game address on the Today screen, this QR becomes a link that continues instantly — no pasting at all.)') + '</small></span></button></div>' +
+    '<button class="tut-labbtn" id="tutLabQr" type="button"><span class="lic">2</span><span>Scan the QR code<small>' + (linkMode ? 'The game address is built into this file — the QR is a LINK: scan it and the game opens with your save already loaded. Zero pasting.' : 'The QR holds your code: scan it, paste the code in on the other device.') + '</small></span></button></div>' +
     '<div class="tut-preview" id="tutLabOut" hidden></div>' +
     '<p class="tut-sub" style="margin-top:12px"><b>Keep your newest code somewhere safe.</b> Lose every copy and the save is gone — no password reset, nobody holds a copy. That\'s the price of total privacy.</p>' +
     tutGateHtml("tutGate4");
@@ -2340,7 +2334,7 @@ function renderTutSaveLab(body){
   document.getElementById("tutLabQr").addEventListener("click", function(){
     labDone("tutLabQr", linkMode
       ? '<b>Link QR is ON.</b><p style="margin:4px 0 0">Your QR on the Today screen holds <b>game address + #save=your code</b>. A student scans it and continues instantly — no pasting, no typing.</p>'
-      : '<b>Code QR mode.</b><p style="margin:4px 0 0">Your QR holds the code itself. Teacher tip: set <b>“Your game address”</b> once in the save box on the Today screen and every QR becomes a scan-and-continue link.</p>');
+      : '<b>Code QR mode.</b><p style="margin:4px 0 0">Your QR holds the code itself: scan it, then paste the code into the load box on the other device.</p>');
   });
 }
 /* ---- Level 5: hunt — find the replay button yourself ---- */
